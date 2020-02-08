@@ -1,0 +1,29 @@
+<div *ngFor="let imgSrc of imgArr; let i = index">
+  <a href="#popup1" (click)="currentSelectedImg(imgSrc.image_url, i)">
+  <app-image-card [imageSrc]="imgSrc.image_url"></app-image-card>
+</a>
+</div>
+
+<div id="popup1" class="overlay">
+	<div class="popup">
+		<h2>Edit Image:</h2>
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+      <div class="wrapper">
+        <div class="first">
+          Original Image
+            <img *ngIf="selectedImg?.image_url" class="content-image" src="{{selectedImg.image_url}}">
+            <p *ngIf="!selectedImg?.image_url">No image</p>
+        </div>
+        <div class="second">
+        New Image
+        <img [src]="url" height="200"> <br/>
+        <input type='file' (change)="onSelectFile($event)">
+        <button type="button" [disabled]="!url" (click)="uploadImage()">Confirm Image</button>
+      </div>
+    </div>
+
+    </div>
+      
+	</div>
+</div>
